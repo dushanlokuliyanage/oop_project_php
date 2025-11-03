@@ -1,19 +1,26 @@
 <?php
 
-class Database {
+class Database{
+    
     private $host = "localhost";
-    private $db = "oopauthsystem";
+    private $db_name = "oopauthsystem";
     private $user = "root";
-    private $pass = "Dushan2006#**";
+    private $password = "Dushan2006#**";
+    public $conn;
 
-    public function connect() {
+    public function setUpConn()
+    {
+        $this->conn = null;
+
         try {
-            $pdo = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->pass);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            return $pdo;
-        } catch (PDOException $e) {
-            die("DB Error: " . $e->getMessage());
+            $this->conn = new PDO("mysql:host=$this->host;dbname=$this->db_name", $this->user, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $error) {
+            die("Database Connection Error: " . $error->getMessage());
         }
+
+        return $this->conn;
     }
 }
+
+?>
