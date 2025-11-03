@@ -7,7 +7,7 @@ class User {
 
     public function __construct() {
         $db = new Database();
-        $this->pdo = $db->connect();
+        $this->pdo = $db->setUpConn();
     }
 
     public function create($data) {
