@@ -6,15 +6,12 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $controller = new RegisterController();
 
-$BASE_URL = "/OOP%20In%20PHP%20Project/public/";
 
-echo $uri;
-
-if ($uri === $BASE_URL) {
+if ($uri === "/") {
     $controller->registerForm();
-} elseif ($uri === $BASE_URL . "/register") {
+} elseif ($uri === "/register") {
     $controller->registerUser();
-} elseif ($uri === $BASE_URL) {
+} elseif ($uri === "/success") {
     require_once __DIR__ . "/../app/views/success.php";
 } else {
     echo "404 Not Found";
